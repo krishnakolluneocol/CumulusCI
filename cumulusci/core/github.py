@@ -129,6 +129,8 @@ def get_github_api_for_repo(keychain, repo_url, session=None) -> GitHub:
     GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
     APP_KEY = os.environ.get("GITHUB_APP_KEY", "").encode("utf-8")
     APP_ID = os.environ.get("GITHUB_APP_ID")
+    NEOCOL_TEST = os.environ.get("NEOCOL_TEST")
+    logger.info(f"NEOCOL_TEST {NEOCOL_TEST}")
     if APP_ID and APP_KEY:
         logger.info(f"Found APP_ID and APP_KEY")
         installation = INSTALLATIONS.get((owner, repo_name))

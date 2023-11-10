@@ -437,6 +437,10 @@ class BaseProjectConfig(BaseTaskFlowConfig, ProjectConfigPropertiesMixin):
                             return parts[0]
 
     def get_github_api(self, url: Optional[str] = None) -> GitHub:
+        self.logger.info("**Making Request To Get GithubAPI")
+        self.logger.info(f"Url {url}")
+        APP_ID = os.environ.get("GITHUB_APP_ID")
+        self.logger.info(f"APP_ID {APP_ID}")
         return get_github_api_for_repo(self.keychain, url or self.repo_url)
 
     def get_repo(self) -> Repository:

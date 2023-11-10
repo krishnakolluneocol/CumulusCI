@@ -4,6 +4,7 @@ import os
 import re
 import time
 import webbrowser
+import logging
 from string import Template
 from typing import Callable, Optional, Union
 from urllib.parse import urlparse
@@ -44,6 +45,8 @@ from cumulusci.oauth.client import (
 from cumulusci.utils.git import parse_repo_url
 from cumulusci.utils.http.requests_utils import safe_json_from_response
 from cumulusci.utils.yaml.cumulusci_yml import cci_safe_load
+
+logger = logging.getLogger(__name__)
 
 OAUTH_DEVICE_APP = {
     "client_id": "2a4bc3e5ce4f2c49a957",
@@ -110,6 +113,7 @@ def _determine_github_client(host: str, client_params: dict) -> GitHub:
 
 def get_github_api_for_repo(keychain, repo_url, session=None) -> GitHub:
     owner, repo_name, host = parse_repo_url(repo_url)
+    logger.info(f"{owner} {repo_name} {host}")
     gh: GitHub = _determine_github_client(
         host,
         {
@@ -126,6 +130,7 @@ def get_github_api_for_repo(keychain, repo_url, session=None) -> GitHub:
     APP_KEY = os.environ.get("GITHUB_APP_KEY", "").encode("utf-8")
     APP_ID = os.environ.get("GITHUB_APP_ID")
     if APP_ID and APP_KEY:
+        logger.info(f"Found APP_ID and APP_KEY")
         installation = INSTALLATIONS.get((owner, repo_name))
         if installation is None:
             gh.login_as_app(APP_KEY, APP_ID, expire_in=120)
@@ -139,8 +144,10 @@ def get_github_api_for_repo(keychain, repo_url, session=None) -> GitHub:
             INSTALLATIONS[(owner, repo_name)] = installation
         gh.login_as_app_installation(APP_KEY, APP_ID, installation.id)
     elif GITHUB_TOKEN:
+        logger.info(f"Found GITHUB_TOKEN")
         gh.login(token=GITHUB_TOKEN)
     else:
+        logger.info(f"No token or app_id or app_key")
         token = get_auth_from_service(host, keychain)
         gh.login(token=token)
 

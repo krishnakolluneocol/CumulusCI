@@ -147,6 +147,7 @@ def flow_info(runtime, flow_name):
 def flow_run(runtime, flow_name, org, delete_org, debug, o, no_prompt):
 
     # Krishna Kollu - This is for debugging purposes and should be removed
+    print(f"******* In cci flow.py")
     soptions = selenium.webdriver.chrome.options.Options()
     soptions.headless = True
     driver = selenium.webdriver.Chrome(options=soptions)

@@ -4,7 +4,8 @@ import pdb
 import runpy
 import sys
 import traceback
-
+import selenium
+import selenium.webdriver
 import click
 import requests
 import rich
@@ -52,6 +53,14 @@ def main(args=None):
 
     This wraps the `click` library in order to do some initialization and centralized error handling.
     """
+    # Krishna Kollu - This is for debugging purposes and should be removed
+    print(f"******* In main cci.py 1")
+    soptions = selenium.webdriver.chrome.options.Options()
+    soptions.headless = True
+    driver = selenium.webdriver.Chrome(options=soptions)
+    print(f"******* main cci.py 1: Able to start selenium chrome")
+    driver.quit()
+    print(f"******* main cci.py 2: Able to exit selenium chrome")
     with contextlib.ExitStack() as stack:
         args = args or sys.argv
 
@@ -76,7 +85,17 @@ def main(args=None):
             args.remove("--debug")
 
         with set_debug_mode(debug):
+            
             try:
+                # Krishna Kollu - This is for debugging purposes and should be removed
+                print(f"******* In main cci.py 2")
+                soptions = selenium.webdriver.chrome.options.Options()
+                soptions.headless = True
+                driver = selenium.webdriver.Chrome(options=soptions)
+                print(f"******* main cci.py 2: Able to start selenium chrome")
+                driver.quit()
+                print(f"******* main cci.py 2: Able to exit selenium chrome")
+                
                 runtime = CliRuntime(load_keychain=False)
             except Exception as e:
                 handle_exception(e, is_error_command, tempfile_path, debug)
@@ -88,6 +107,15 @@ def main(args=None):
             init_logger(debug=debug)
             # Hand CLI processing over to click, but handle exceptions
             try:
+                # Krishna Kollu - This is for debugging purposes and should be removed
+                print(f"******* In main cci.py 3")
+                soptions = selenium.webdriver.chrome.options.Options()
+                soptions.headless = True
+                driver = selenium.webdriver.Chrome(options=soptions)
+                print(f"******* main cci.py 3: Able to start selenium chrome")
+                driver.quit()
+                print(f"******* main cci.py 3: Able to exit selenium chrome")
+
                 cli(args[1:], standalone_mode=False, obj=runtime)
             except click.Abort:  # Keyboard interrupt
                 console = Console()

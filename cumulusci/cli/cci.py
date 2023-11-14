@@ -72,16 +72,16 @@ def main(args=None):
         print(f"******* main cci.py 1: Able to exit selenium chrome")
     except Exception as e:
         # Start the Google Chrome process
-        process = subprocess.Popen(["google-chrome"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        #process = subprocess.Popen(["google-chrome"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         # Wait for 10 seconds
-        time.sleep(10)
+        #time.sleep(10)
         # Terminate the process
-        process.terminate()
+        #process.terminate()
         # Wait for process to terminate and get the output
-        stdout, stderr = process.communicate()
-        path = f"{os.environ.get('PATH')}"
-        message = f"{stdout} {stderr} {path}"
-        raise ValueError(f"Unable to open chrome in main cci.py 1. {message}")
+        #stdout, stderr = process.communicate()
+        #path = f"{os.environ.get('PATH')}"
+        message = f"{e}"
+        raise ValueError(f"Unable to open chrome in main cci.py 1! {message}")
     
     if 1 == 1:
         raise ValueError('Here2 {keys_string}')

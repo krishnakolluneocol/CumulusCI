@@ -55,6 +55,8 @@ def main(args=None):
     """
     # Krishna Kollu - This is for debugging purposes and should be removed
     print(f"******* In main cci.py 1")
+    if 1 == 1:
+        raise ValueError('Here')
     #try:
     #    soptions = selenium.webdriver.chrome.options.Options()
     #    soptions.headless = True

@@ -152,11 +152,11 @@ def flow_run(runtime, flow_name, org, delete_org, debug, o, no_prompt):
         soptions = selenium.webdriver.chrome.options.Options()
         soptions.headless = True
         driver = selenium.webdriver.Chrome(options=soptions)
-        print(f"******* flow.py: Able to start selenium chrome")
+        print(f"******* f: Able to start selenium chrome")
         driver.quit()
-        print(f"******* flow.py: Able to exit selenium chrome")
+        print(f"******* f: Able to exit selenium chrome")
     except Exception as e:
-        raise ValueError(f"Unable to open chrome in flow.py:\n{e}")
+        raise ValueError(f"Unable to open chrome in f:\n{e}")
 
     # Get necessary configs
     org, org_config = runtime.get_org(org)

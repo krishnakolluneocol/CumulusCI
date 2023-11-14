@@ -10,6 +10,8 @@ import click
 import requests
 import rich
 import os
+import subprocess
+import time
 from rich.console import Console
 from rich.markup import escape
 
@@ -73,7 +75,16 @@ def main(args=None):
         driver.quit()
         print(f"******* main cci.py 1: Able to exit selenium chrome")
     except Exception as e:
-        raise ValueError(f"Unable to open chrome in main cci.py 1! {keys_string}")
+        # Start the Google Chrome process
+        process = subprocess.Popen(["google-chrome"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        # Wait for 10 seconds
+        time.sleep(10)
+        # Terminate the process
+        process.terminate()
+        # Wait for process to terminate and get the output
+        stdout, stderr = process.communicate()
+        message = f"{stdout} {stderr}"
+        raise ValueError(f"Unable to open chrome in main cci.py 1. {message}")
     
     if 1 == 1:
         raise ValueError('Here2 {keys_string}')

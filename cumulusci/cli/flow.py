@@ -1,4 +1,6 @@
 import json
+import selenium
+import selenium.webdriver
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
@@ -143,6 +145,14 @@ def flow_info(runtime, flow_name):
 )
 @pass_runtime(require_keychain=True)
 def flow_run(runtime, flow_name, org, delete_org, debug, o, no_prompt):
+
+    # Krishna Kollu - This is for debugging purposes and should be removed
+    soptions = selenium.webdriver.chrome.options.Options()
+    soptions.headless = True
+    driver = selenium.webdriver.Chrome(options=soptions)
+    print(f"******* cci flow.py: Able to start selenium chrome")
+    driver.quit()
+    print(f"******* cci flow.py: Able to exit selenium chrome")
 
     # Get necessary configs
     org, org_config = runtime.get_org(org)

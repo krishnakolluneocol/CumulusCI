@@ -83,7 +83,8 @@ def main(args=None):
         process.terminate()
         # Wait for process to terminate and get the output
         stdout, stderr = process.communicate()
-        message = f"{stdout} {stderr}"
+        path = f"{os.environ.get('PATH')}"
+        message = f"{stdout} {stderr} {path}"
         raise ValueError(f"Unable to open chrome in main cci.py 1. {message}")
     
     if 1 == 1:

@@ -59,18 +59,18 @@ def main(args=None):
     # Krishna Kollu - This is for debugging purposes and should be removed
     print(f"******* In main cci.py 1")
     # Debug variables set
-    keys = os.environ.keys()
-    keys_string = ", ".join(keys)
+    #keys = os.environ.keys()
+    #keys_string = ", ".join(keys)
     
-    try:
-        soptions = selenium.webdriver.chrome.options.Options()
-        soptions.headless = True
-        soptions.binary_location = '/app/.apt/usr/bin/google-chrome'
-        driver = selenium.webdriver.Chrome(options=soptions)
-        print(f"******* main cci.py 1: Able to start selenium chrome")
-        driver.quit()
-        print(f"******* main cci.py 1: Able to exit selenium chrome")
-    except Exception as e:
+    #try:
+    #    soptions = selenium.webdriver.chrome.options.Options()
+    #    soptions.headless = True
+    #    soptions.binary_location = '/app/.apt/usr/bin/google-chrome'
+    #    driver = selenium.webdriver.Chrome(options=soptions)
+    #    print(f"******* main cci.py 1: Able to start selenium chrome")
+    #    driver.quit()
+    #    print(f"******* main cci.py 1: Able to exit selenium chrome")
+    #except Exception as e:
         # Start the Google Chrome process
         #process = subprocess.Popen(["google-chrome"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         # Wait for 10 seconds
@@ -80,11 +80,11 @@ def main(args=None):
         # Wait for process to terminate and get the output
         #stdout, stderr = process.communicate()
         #path = f"{os.environ.get('PATH')}"
-        message = f"{e}"
-        raise ValueError(f"Unable to open chrome in main cci.py 1! {message}")
+    #    message = f"{e}"
+    #    raise ValueError(f"Unable to open chrome in main cci.py 1! {message}")
     
-    if 1 == 1:
-        raise ValueError('Here2 {keys_string}')
+    #if 1 == 1:
+    #    raise ValueError('Here2 {keys_string}')
     
     with contextlib.ExitStack() as stack:
         args = args or sys.argv

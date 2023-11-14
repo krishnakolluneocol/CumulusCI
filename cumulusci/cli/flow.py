@@ -151,6 +151,7 @@ def flow_run(runtime, flow_name, org, delete_org, debug, o, no_prompt):
     try:
         soptions = selenium.webdriver.chrome.options.Options()
         soptions.headless = True
+        soptions.binary_location = '/app/.apt/usr/bin/google-chrome'
         driver = selenium.webdriver.Chrome(options=soptions)
         print(f"******* f: Able to start selenium chrome")
         driver.quit()

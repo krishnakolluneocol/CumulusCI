@@ -65,11 +65,7 @@ def main(args=None):
     try:
         soptions = selenium.webdriver.chrome.options.Options()
         soptions.headless = True
-        soptions.add_argument("--no-sandbox")
-        soptions.add_argument("--headless")
-        soptions.add_argument("--disable-dev-shm-usage")
-        soptions.add_argument('--disable-gpu')
-        soptions.add_argument('--remote-debugging-port=9222')
+        soptions.binary_location = '/app/.apt/usr/bin/google-chrome'
         driver = selenium.webdriver.Chrome(options=soptions)
         print(f"******* main cci.py 1: Able to start selenium chrome")
         driver.quit()

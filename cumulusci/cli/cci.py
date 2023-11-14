@@ -55,15 +55,15 @@ def main(args=None):
     """
     # Krishna Kollu - This is for debugging purposes and should be removed
     print(f"******* In main cci.py 1")
-    try:
-        soptions = selenium.webdriver.chrome.options.Options()
-        soptions.headless = True
-        driver = selenium.webdriver.Chrome(options=soptions)
-        print(f"******* main cci.py 1: Able to start selenium chrome")
-        driver.quit()
-        print(f"******* main cci.py 1: Able to exit selenium chrome")
-    except Exception as e:
-        raise ValueError(f"Unable to open chrome in main cci.py 1:\n{e}")
+    #try:
+    #    soptions = selenium.webdriver.chrome.options.Options()
+    #    soptions.headless = True
+    #    driver = selenium.webdriver.Chrome(options=soptions)
+    #    print(f"******* main cci.py 1: Able to start selenium chrome")
+    #    driver.quit()
+    #    print(f"******* main cci.py 1: Able to exit selenium chrome")
+    #except Exception as e:
+    #    raise ValueError(f"Unable to open chrome in main cci.py 1:\n{e}")
     
     with contextlib.ExitStack() as stack:
         args = args or sys.argv

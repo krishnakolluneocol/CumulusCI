@@ -92,16 +92,16 @@ def main(args=None):
             
             try:
                 # Krishna Kollu - This is for debugging purposes and should be removed
-                print(f"******* In main cci.py 2")
-                try:
-                    soptions = selenium.webdriver.chrome.options.Options()
-                    soptions.headless = True
-                    driver = selenium.webdriver.Chrome(options=soptions)
-                    print(f"******* main cci.py 2: Able to start selenium chrome")
-                    driver.quit()
-                    print(f"******* main cci.py 2: Able to exit selenium chrome")
-                except Exception as e:
-                    raise ValueError(f"Unable to open chrome in main cci.py 2:\n{e}")
+                #print(f"******* In main cci.py 2")
+                #try:
+                #    soptions = selenium.webdriver.chrome.options.Options()
+                #    soptions.headless = True
+                #    driver = selenium.webdriver.Chrome(options=soptions)
+                #    print(f"******* main cci.py 2: Able to start selenium chrome")
+                #    driver.quit()
+                #    print(f"******* main cci.py 2: Able to exit selenium chrome")
+                #except Exception as e:
+                #    raise ValueError(f"Unable to open chrome in main cci.py 2:\n{e}")
                 
                 runtime = CliRuntime(load_keychain=False)
             except Exception as e:
@@ -115,16 +115,16 @@ def main(args=None):
             # Hand CLI processing over to click, but handle exceptions
             try:
                 # Krishna Kollu - This is for debugging purposes and should be removed
-                print(f"******* In main cci.py 3")
-                try:
-                    soptions = selenium.webdriver.chrome.options.Options()
-                    soptions.headless = True
-                    driver = selenium.webdriver.Chrome(options=soptions)
-                    print(f"******* main cci.py 3: Able to start selenium chrome")
-                    driver.quit()
-                    print(f"******* main cci.py 3: Able to exit selenium chrome")
-                except Exception as e:
-                    raise ValueError(f"Unable to open chrome in main cci.py 3:\n{e}")
+                #print(f"******* In main cci.py 3")
+                #try:
+                #    soptions = selenium.webdriver.chrome.options.Options()
+                #    soptions.headless = True
+                #    driver = selenium.webdriver.Chrome(options=soptions)
+                #    print(f"******* main cci.py 3: Able to start selenium chrome")
+                #    driver.quit()
+                #    print(f"******* main cci.py 3: Able to exit selenium chrome")
+                #except Exception as e:
+                #    raise ValueError(f"Unable to open chrome in main cci.py 3:\n{e}")
 
                 cli(args[1:], standalone_mode=False, obj=runtime)
             except click.Abort:  # Keyboard interrupt

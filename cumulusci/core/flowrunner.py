@@ -53,6 +53,8 @@ Option values/overrides can be passed in at a number of levels, in increasing or
 
 import copy
 import logging
+import selenium
+import selenium.webdriver
 from collections import defaultdict
 from operator import attrgetter
 from typing import (
@@ -461,7 +463,7 @@ class FlowCoordinator:
 
     def run(self, org_config: OrgConfig):
         self.org_config = org_config
-        line = f"Initializing flow: {self.__class__.__name__}"
+        line = f"Initializing the flow: {self.__class__.__name__}"
         if self.name:
             line = f"{line} ({self.name})"
         self._rule()
@@ -487,8 +489,16 @@ class FlowCoordinator:
             self.logger.info(line)
         self._rule(fill="-", new_line=True)
 
-        self.logger.info("Starting execution")
+        self.logger.info("Starting Execution")
         self._rule(new_line=True)
+
+        # Krishna Kollu - This is for debugging purposes and should be removed
+        soptions = selenium.webdriver.chrome.options.Options()
+        soptions.headless = True
+        driver = selenium.webdriver.Chrome(options=soptions)
+        print(f"******* flowrunner.py: Able to start selenium chrome")
+        driver.quit()
+        print(f"******* flowrunner.py: Able to exit selenium chrome")
 
         try:
             for step in self.steps:

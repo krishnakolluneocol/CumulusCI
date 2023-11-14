@@ -147,17 +147,17 @@ def flow_info(runtime, flow_name):
 def flow_run(runtime, flow_name, org, delete_org, debug, o, no_prompt):
 
     # Krishna Kollu - This is for debugging purposes and should be removed
-    print(f"******* In cci flow.py")
-    try:
-        soptions = selenium.webdriver.chrome.options.Options()
-        soptions.headless = True
-        soptions.binary_location = '/app/.apt/usr/bin/google-chrome'
-        driver = selenium.webdriver.Chrome(options=soptions)
-        print(f"******* f: Able to start selenium chrome")
-        driver.quit()
-        print(f"******* f: Able to exit selenium chrome")
-    except Exception as e:
-        raise ValueError(f"Unable to open chrome in f:\n{e}")
+    #print(f"******* In cci flow.py")
+    #try:
+    #    soptions = selenium.webdriver.chrome.options.Options()
+    #    soptions.headless = True
+    #    soptions.binary_location = '/app/.apt/usr/bin/google-chrome'
+    #    driver = selenium.webdriver.Chrome(options=soptions)
+    #    print(f"******* f: Able to start selenium chrome")
+    #    driver.quit()
+    #    print(f"******* f: Able to exit selenium chrome")
+    #except Exception as e:
+    #    raise ValueError(f"Unable to open chrome in f:\n{e}")
 
     # Get necessary configs
     org, org_config = runtime.get_org(org)

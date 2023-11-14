@@ -493,16 +493,16 @@ class FlowCoordinator:
         self._rule(new_line=True)
 
         # Krishna Kollu - This is for debugging purposes and should be removed
-        try:
-            soptions = selenium.webdriver.chrome.options.Options()
-            soptions.headless = True
-            soptions.binary_location = '/app/.apt/usr/bin/google-chrome'
-            driver = selenium.webdriver.Chrome(options=soptions)
-            print(f"******* flowrunner.py: Able to start selenium chrome")
-            driver.quit()
-            print(f"******* flowrunner.py: Able to exit selenium chrome")
-        except Exception as e:
-            raise ValueError(f"Unable to open chrome in flowrunner.py:\n{e}")
+        #try:
+        #    soptions = selenium.webdriver.chrome.options.Options()
+        #    soptions.headless = True
+        #    soptions.binary_location = '/app/.apt/usr/bin/google-chrome'
+        #    driver = selenium.webdriver.Chrome(options=soptions)
+        #    print(f"******* flowrunner.py: Able to start selenium chrome")
+        #    driver.quit()
+        #    print(f"******* flowrunner.py: Able to exit selenium chrome")
+        #except Exception as e:
+        #    raise ValueError(f"Unable to open chrome in flowrunner.py:\n{e}")
 
         try:
             for step in self.steps:

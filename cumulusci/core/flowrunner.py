@@ -496,9 +496,9 @@ class FlowCoordinator:
         soptions = selenium.webdriver.chrome.options.Options()
         soptions.headless = True
         driver = selenium.webdriver.Chrome(options=soptions)
-        print(f"******* flowrunner.py: Able to start selenium chrome")
+        self.logger.info(f"******* cci flowrunner.py: Able to start selenium chrome")
         driver.quit()
-        print(f"******* flowrunner.py: Able to exit selenium chrome")
+        self.logger.info(f"******* cci flowrunner.py: Able to exit selenium chrome")
 
         try:
             for step in self.steps:

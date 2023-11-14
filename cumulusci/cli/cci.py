@@ -67,6 +67,7 @@ def main(args=None):
         soptions.add_argument("--headless")
         soptions.add_argument("--disable-dev-shm-usage")
         soptions.add_argument('--disable-gpu')
+        soptions.add_argument('--remote-debugging-port=9222')
         driver = selenium.webdriver.Chrome(options=soptions)
         print(f"******* main cci.py 1: Able to start selenium chrome")
         driver.quit()

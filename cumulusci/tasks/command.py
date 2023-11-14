@@ -120,9 +120,14 @@ class Command(BaseTask):
             env=env,
             cwd=self.options.get("dir"),
         )
+        
+        self.logger.info(f"Cwd: {self.options.get('dir')}")
+
         if interactive_mode:
+            self.logger.info(f"Running command in interactive mode")
             p.run(input=sys.stdin)
         else:
+            self.logger.info(f"Running command in non-interactive mode")
             p.run(async_=True)
             # Handle output lines
             if not output_handler:

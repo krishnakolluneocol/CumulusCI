@@ -169,6 +169,8 @@ class Robot(BaseSalesforceTask):
         self.options.setdefault("sources", [])
 
     def _run_task(self):
+        self.logger.info(f'**Running Task')
+
         self.options["vars"].append("org:{}".format(self.org_config.name))
         options = self.options["options"].copy()
         for option in ("test", "include", "exclude", "xunit", "name", "skip"):
@@ -204,6 +206,8 @@ class Robot(BaseSalesforceTask):
             if prefix in source_paths:
                 self.options["suites"][i] = os.path.join(source_paths[prefix], path)
 
+        self.logger.info(f'**Options {options}')
+
         # this is necessary so that javascript-based keywords have access
         # to at least some of the org info
         cci_context = json.dumps(
@@ -225,6 +229,7 @@ class Robot(BaseSalesforceTask):
         )
 
         if self.options["processes"] > 1:
+            self.logger.info(f'**Multiple Processes')
             # Since pabot runs multiple robot processes, and because
             # those processes aren't cci tasks, we have to set up the
             # environment to match what we do with a cci task. Specifically,
@@ -271,10 +276,14 @@ class Robot(BaseSalesforceTask):
             self.logger.info(
                 f"pabot command: {' '.join([shlex.quote(x) for x in cmd])}"
             )
+
+            self.logger.info(f'**Cmd {cmd}')
+
             result = subprocess.run(cmd)
             num_failed = result.returncode
 
         else:
+            self.logger.info(f'**In else clause (not multiple processes)')
             # Save it so that we can restore it later
             orig_sys_path = sys.path.copy()
 
@@ -295,11 +304,15 @@ class Robot(BaseSalesforceTask):
             options["stdout"] = sys.stdout
             options["stderr"] = sys.stderr
             try:
+                self.logger.info(f'**Suites 307 {self.options["suites"]}')
+                self.logger.info(f'**Options 307 {options}')
                 num_failed = robot_run(*self.options["suites"], **options)
+                self.logger.info(f'**num_failed 309 {num_failed}')
             finally:
                 sys.path = orig_sys_path
 
         output_xml = Path(options["outputdir"]) / "output.xml"
+        self.logger.info(f'**Output Xml 314 {output_xml}')
         if num_failed <= 250 and output_xml.exists():
             log_perf_summary_from_xml(output_xml, self.logger.info)
 

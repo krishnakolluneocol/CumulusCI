@@ -140,7 +140,7 @@ salesforce-bulk==2.2.0
     # via cumulusci (pyproject.toml)
 sarge==0.1.7.post1
     # via cumulusci (pyproject.toml)
-selenium==4.15.2
+selenium==3.141.0
     # via
     #   cumulusci (pyproject.toml)
     #   robotframework-seleniumlibrary

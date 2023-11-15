@@ -53,8 +53,7 @@ dependencies = [
     "rst2ansi",
     "salesforce-bulk",
     "sarge",
-    "selenium",
-#    "selenium<4", Commented out - krishna kollu
+    "selenium<4", 
     "simple-salesforce==1.11.4",
     "snowfakery",
     "SQLAlchemy",

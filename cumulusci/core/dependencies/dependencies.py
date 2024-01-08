@@ -465,6 +465,7 @@ class PackageNamespaceVersionDependency(StaticDependency):
             return
 
         context.logger.info(f"Installing {self.description}")
+        context.logger.info(f"-KK--Starting Package Install")
         install_package_by_namespace_version(
             context,
             org,

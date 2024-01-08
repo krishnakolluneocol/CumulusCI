@@ -21,11 +21,12 @@ from cumulusci.utils import parse_api_datetime
 from cumulusci.utils.fileutils import open_fs_resource
 from cumulusci.utils.http.requests_utils import safe_json_from_response
 from cumulusci.utils.version_strings import StrictVersion
+import logging
 
 SKIP_REFRESH = os.environ.get("CUMULUSCI_DISABLE_REFRESH")
 SANDBOX_MYDOMAIN_RE = re.compile(r"\.cs\d+\.my\.(.*)salesforce\.com")
 MYDOMAIN_RE = re.compile(r"\.my\.(.*)salesforce\.com")
-
+logger = logging.getLogger(__name__)
 
 VersionInfo = namedtuple("VersionInfo", ["id", "number"])
 
@@ -297,9 +298,9 @@ class OrgConfig(BaseConfig):
         and multiple second-generation packages sharing that namespace are installed.
         Use a package Id to handle this circumstance."""
 
-        self.logger.warning(f"-KK--Checking minimum_package_version for {package_identifier}")
+        logger.info(f"-KK--Checking minimum_package_version for {package_identifier}")
         installed_version = self.installed_packages.get(package_identifier)
-        self.logger.warning(f"-KK--Installed version {installed_version}")
+        logger.info(f"-KK--Installed version {installed_version}")
 
         if not installed_version:
             return False
@@ -309,7 +310,7 @@ class OrgConfig(BaseConfig):
                 f"packages are installed that match this identifier."
             )
 
-        self.logger.warning(f"-KK--Comparing {installed_version[0].number} with version_identifier")
+        logger.info(f"-KK--Comparing {installed_version[0].number} with version_identifier")
         return installed_version[0].number >= version_identifier
 
     @property

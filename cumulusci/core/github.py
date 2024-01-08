@@ -132,7 +132,7 @@ def get_github_api_for_repo(keychain, repo_url, session=None) -> GitHub:
     NEOCOL_TEST = os.environ.get("NEOCOL_TEST")
     logger.info(f"NEOCOL_TEST {NEOCOL_TEST}")
     if APP_ID and APP_KEY:
-        logger.info(f"Found APP_ID and APP_KEY")
+        logger.info(f"Found APP_ID and APP_KEY.")
         installation = INSTALLATIONS.get((owner, repo_name))
         if installation is None:
             gh.login_as_app(APP_KEY, APP_ID, expire_in=120)

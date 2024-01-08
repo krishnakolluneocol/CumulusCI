@@ -296,7 +296,10 @@ class OrgConfig(BaseConfig):
         A CumulusCIException will be thrown if you request to check a namespace
         and multiple second-generation packages sharing that namespace are installed.
         Use a package Id to handle this circumstance."""
+
+        self.logger.warning(f"-KK--Checking minimum_package_version for {package_identifier}")
         installed_version = self.installed_packages.get(package_identifier)
+        self.logger.warning(f"-KK--Installed version {installed_version}")
 
         if not installed_version:
             return False
@@ -306,6 +309,7 @@ class OrgConfig(BaseConfig):
                 f"packages are installed that match this identifier."
             )
 
+        self.logger.warning(f"-KK--Comparing {installed_version[0].number} with version_identifier")
         return installed_version[0].number >= version_identifier
 
     @property

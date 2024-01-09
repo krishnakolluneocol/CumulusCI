@@ -366,8 +366,7 @@ class GitHubDynamicDependency(BaseGitHubDependency):
         
         if dependencies:
             # Below code is added by KK
-            dependencies_str = json.dumps(dependencies)
-            context.logger.info(f"--KK--Dependencies: {dependencies_str}")
+            context.logger.info(f"--KK--Dependencies: {dependencies}")
 
             deps.extend([parse_dependency(d) for d in dependencies])
             if None in deps:

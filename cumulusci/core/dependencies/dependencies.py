@@ -3,6 +3,7 @@ import contextlib
 import itertools
 import logging
 import os
+import json
 from typing import List, Optional
 from zipfile import ZipFile
 
@@ -352,7 +353,7 @@ class GitHubDynamicDependency(BaseGitHubDependency):
 
         deps = []
 
-        context.logger.info(f"Collecting dependencies from Github repo {self.github}")
+        context.logger.info(f"Collecting dependencies from Github Repo {self.github}")
         repo = get_repo(self.github, context)
 
         package_config = get_remote_project_config(repo, self.ref)
@@ -362,7 +363,12 @@ class GitHubDynamicDependency(BaseGitHubDependency):
         # These may be unresolved or unflattened; if so, `get_static_dependencies()`
         # will manage them.
         dependencies = package_config.project__dependencies
+        
         if dependencies:
+            # Below code is added by KK
+            dependencies_str = json.dumps(dependencies)
+            context.logger.info(f"--KK--Dependencies: {dependencies_str}")
+
             deps.extend([parse_dependency(d) for d in dependencies])
             if None in deps:
                 raise DependencyResolutionError(

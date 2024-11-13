@@ -46,7 +46,11 @@ class SFDXOrgTask(SFDXBaseTask, BaseSalesforceTask):
     def _get_command(self):
         command = super()._get_command()
         # For scratch orgs, just pass the username in the command line
+        self.logger.info("The org config is: {}".format(self.org_config))
         if isinstance(self.org_config, ScratchOrgConfig):
+            command += " -u {username}".format(username=self.org_config.username)
+        else:
+            self.logger.info("Not recognized as a scratch org")
             command += " -u {username}".format(username=self.org_config.username)
         return command
 
